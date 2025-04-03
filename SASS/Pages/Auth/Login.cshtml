@@ -1,0 +1,25 @@
+﻿@page
+@model SASS.Pages.Auth.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>Login</h2>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+
+<form method="post">
+    <div class="mb-3">
+        <label class="form-label">Username or Email</label>
+        <input type="text" class="form-control" asp-for="LoginInput" required />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" asp-for="Password" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+    <p>Don't' have an account? <a asp-page="/Auth/Register">Register here</a></p>
+</form>
