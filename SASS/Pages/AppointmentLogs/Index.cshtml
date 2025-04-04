@@ -1,0 +1,32 @@
+﻿@page
+@model SASS.Pages.AppointmentLogs.IndexModel
+@using SASS.Models
+@{
+    ViewData["Title"] = "Appointment Logs";
+}
+
+<h2>Appointment Logs</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Appointment Title</th>
+            <th>Client Name</th>
+            <th>Action</th>
+            <th>Timestamp</th>
+            <th>Changed By</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var log in Model.AppointmentLogsList)
+        {
+            <tr>
+                <td>@log.Appointment.Title</td>
+                <td>@log.Appointment.Name</td>
+                <td>@log.Action</td>
+                <td>@log.Timestamp.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                <td>@log.ChangedByUser?.FirstName @log.ChangedByUser?.LastName</td>
+            </tr>
+        }
+    </tbody>
+</table>

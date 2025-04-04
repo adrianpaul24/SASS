@@ -1,41 +1,3 @@
-//using Microsoft.AspNetCore.Authorization;
-//using Microsoft.AspNetCore.Mvc;
-//using Microsoft.AspNetCore.Mvc.RazorPages;
-//using Microsoft.EntityFrameworkCore;
-//using SASS.Data;
-//using SASS.Models;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Threading.Tasks;
-
-//namespace SASS.Pages.Calendar
-//{
-//    [Authorize]
-//    public class IndexModel : PageModel
-//    {
-//        private readonly ApplicationDbContext _context;
-
-//        public IndexModel(ApplicationDbContext context)
-//        {
-//            _context = context;
-//        }
-
-//        public async Task<IActionResult> OnGetAppointments()
-//        {
-//            var appointments = await _context.Appointments
-//                .Select(a => new
-//                {
-//                    id = a.Id,
-//                    title = "Appointment with " + a.Id, // You can change this to actual patient name
-//                    start = a.AppointmentDate.ToString("yyyy-MM-ddTHH:mm:ss") // Convert to ISO format
-//                })
-//                .ToListAsync();
-
-//            return new JsonResult(appointments);
-//        }
-//    }
-//}
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -56,10 +18,10 @@ namespace SASS.Pages.Calendar
         }
 
         [BindProperty]
-        public Appointments NewAppointment { get; set; }
+        public SASS.Models.Appointments NewAppointment { get; set; }
 
         // Method to handle the POST request from the frontend
-        public async Task<IActionResult> OnPostCreateAppointmentAsync([FromBody] Appointments appointment)
+        public async Task<IActionResult> OnPostCreateAppointmentAsync([FromBody] SASS.Models.Appointments appointment)
         {
             if (appointment == null)
             {
@@ -73,7 +35,7 @@ namespace SASS.Pages.Calendar
             await _context.SaveChangesAsync();
 
             // Create an appointment log
-            var log = new AppointmentLogs
+            var log = new SASS.Models.AppointmentLogs
             {
                 AppointmentId = appointment.Id,
                 Action = "Created",
@@ -83,7 +45,7 @@ namespace SASS.Pages.Calendar
             _context.AppointmentLogs.Add(log);
 
             // Create a reminder for the appointment (example: 1 hour before)
-            var reminder = new Reminders
+            var reminder = new SASS.Models.Reminders
             {
                 AppointmentId = appointment.Id,
                 Type = "Pre-Appointment", // Example reminder type

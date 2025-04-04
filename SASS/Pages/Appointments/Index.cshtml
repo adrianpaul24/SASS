@@ -1,0 +1,43 @@
+﻿@page
+@model SASS.Pages.Appointments.IndexModel
+@using SASS.Models
+@{
+    ViewData["Title"] = "Appointments";
+}
+
+<h2>Appointments</h2>
+
+<a class="btn btn-primary mb-3" asp-page="Create">+ Create Appointment</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Status</th>
+            <th>Assigned To</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.AppointmentsList)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Name</td>
+                <td>@item.AppointmentDate.ToString("yyyy-MM-dd")</td>
+                <td>@item.StartTime</td>
+                <td>@item.EndTime</td>
+                <td>@item.Status</td>
+                <td>@item.User?.FirstName @item.User?.LastName</td>
+                <td>
+                    <a class="btn btn-sm btn-info" asp-page="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a class="btn btn-sm btn-danger" asp-page="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

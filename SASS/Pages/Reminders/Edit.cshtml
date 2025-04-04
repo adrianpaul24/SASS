@@ -1,0 +1,31 @@
+﻿@* @page *@
+@* @model SASS.Pages.Reminders.EditModel *@
+@* @{ *@
+@*     ViewData["Title"] = "Edit Reminder"; *@
+@* } *@
+
+@* <h2>Edit Reminder</h2> *@
+
+@* <form method="post"> *@
+@*     <div class="form-group"> *@
+@*         <label for="Type">Type</label> *@
+@*         <input type="text" class="form-control" id="Type" name="Type" value="@Model.Reminder.Type" required /> *@
+@*     </div> *@
+
+@*     <div class="form-group"> *@
+@*         <label for="Date">Date</label> *@
+@*         <input type="datetime-local" class="form-control" id="Date" name="Date" value="@Model.Reminder.Date.ToString("yyyy-MM-ddTHH:mm")" required /> *@
+@*     </div> *@
+
+@*     <div class="form-group"> *@
+@*         <label for="Status">Status</label> *@
+@*         <select class="form-control" id="Status" name="Status" required> *@
+@*             <option value="Pending" @(Model.Reminder.Status == "Pending" ? "selected" : "")>Pending</option> *@
+@*             <option value="Completed" @(Model.Reminder.Status == "Completed" ? "selected" : "")>Completed</option> *@
+@*             <option value="Cancelled" @(Model.Reminder.Status == "Cancelled" ? "selected" : "")>Cancelled</option> *@
+@*         </select> *@
+@*     </div> *@
+
+@*     <button type="submit" class="btn btn-primary">Save Changes</button> *@
+@*     <a href="/Reminders" class="btn btn-secondary">Cancel</a> *@
+@* </form> *@
